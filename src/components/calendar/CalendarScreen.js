@@ -8,6 +8,8 @@ import "moment/locale/es";
 import { messages } from "../../helpers/calendar-messages-es";
 import { CalendarEvent } from "./CalendarEvent";
 import { CalendarModal } from "./CalendarModal";
+import { useDispatch } from "react-redux";
+import { uiOpenModal } from "../../actions/ui";
 moment.locale("es");
 const localizer = momentLocalizer(moment);
 
@@ -43,12 +45,15 @@ export const CalendarScreen = () => {
     };
   };
 
+  const dispatch = useDispatch();
+
   const onDoubleClickEvent = (e) => {
-    console.log(e);
+    // console.log(e);
+    dispatch(uiOpenModal());
   };
 
   const onSelectEvent = (e) => {
-    console.log(e);
+    // console.log(e);
   };
 
   const onViewChange = (e) => {
