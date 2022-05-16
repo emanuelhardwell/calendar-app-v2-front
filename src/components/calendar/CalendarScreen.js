@@ -8,30 +8,32 @@ import "moment/locale/es";
 import { messages } from "../../helpers/calendar-messages-es";
 import { CalendarEvent } from "./CalendarEvent";
 import { CalendarModal } from "./CalendarModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { uiOpenModal } from "../../actions/ui";
 import { eventSetActive } from "../../actions/events";
 import { AddNewFab } from "./AddNewFab";
 moment.locale("es");
 const localizer = momentLocalizer(moment);
 
-const events = [
-  {
-    title: "Cumpleaños del jefe",
-    start: moment().toDate(),
-    end: moment().add(2, "hours").toDate(),
-    note: "llevar el pastel de chocolate",
-    user: {
-      uid: 122333,
-      name: "Emanuel",
-    },
-  },
-];
+// const events = [
+//   {
+//     title: "Cumpleaños del jefe",
+//     start: moment().toDate(),
+//     end: moment().add(2, "hours").toDate(),
+//     note: "llevar el pastel de chocolate",
+//     user: {
+//       uid: 122333,
+//       name: "Emanuel",
+//     },
+//   },
+// ];
 
 export const CalendarScreen = () => {
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "month"
   );
+
+  const { events } = useSelector((state) => state.calendar);
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
@@ -57,7 +59,6 @@ export const CalendarScreen = () => {
   const onSelectEvent = (e) => {
     // console.log(e);
     dispatch(eventSetActive(e));
-    dispatch(uiOpenModal());
   };
 
   const onViewChange = (e) => {
