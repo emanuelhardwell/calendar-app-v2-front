@@ -26,3 +26,9 @@ export const eventUpdated = (event) => {
     payload: event,
   };
 };
+
+export const eventDeleted = () => {
+  return {
+    type: types.eventDeleted,
+  };
+};

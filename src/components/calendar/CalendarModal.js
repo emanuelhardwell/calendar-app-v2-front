@@ -48,6 +48,8 @@ export const CalendarModal = () => {
   useEffect(() => {
     if (activeEvent) {
       setFormValues(activeEvent);
+    } else {
+      setFormValues(initEvent);
     }
   }, [activeEvent]);
 
@@ -134,6 +136,7 @@ export const CalendarModal = () => {
         // contentLabel="Example Modal"
       >
         <form onSubmit={handleSubmit} className="container" noValidate>
+          <h4> {activeEvent ? "Edit Event" : "Create Event"} </h4>
           <div className="mb-3">
             <label>Fecha y hora inicio</label>
             <DateTimePicker

@@ -85,3 +85,10 @@ code {
   right: 25px;
   position: fixed;
 }
+
+.fab-danger {
+  padding: 10px;
+  bottom: 25px;
+  left: 25px;
+  position: fixed;
+}
