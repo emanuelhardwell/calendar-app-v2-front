@@ -15,3 +15,26 @@ export const fetchWithOutToken = (endpoint, data, method = "GET") => {
     });
   }
 };
+
+export const fetchWithToken = (endpoint, data, method = "GET") => {
+  const urlApi = `${url}/${endpoint}`;
+  const token = localStorage.getItem("token") || "";
+
+  if (method === "GET") {
+    return fetch(urlApi, {
+      method,
+      headers: {
+        "x-token": token,
+      },
+    });
+  } else {
+    return fetch(urlApi, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        "x-token": token,
+      },
+      body: JSON.stringify(data),
+    });
+  }
+};
