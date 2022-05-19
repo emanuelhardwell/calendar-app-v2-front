@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { startLogin } from "../../actions/auth";
+import Swal from "sweetalert2";
+import { startLogin, startRegister } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
 
 export const LoginScreen = () => {
@@ -11,11 +12,29 @@ export const LoginScreen = () => {
 
   const { lemail, lpassword } = formLoginValues;
 
+  const [formRegisterValues, handleRegisterInputChange] = useForm({
+    rname: "emanuel",
+    remail: "ema@gmail.com",
+    rpassword1: "123456",
+    rpassword2: "123456",
+  });
+
+  const { rname, remail, rpassword1, rpassword2 } = formRegisterValues;
+
   const dispatch = useDispatch();
 
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(startLogin(lemail, lpassword));
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+
+    if (rpassword1 !== rpassword2) {
+      return Swal.fire("Error", "Las contraseñas no coinciden", "error");
+    }
+    dispatch(startRegister(rname, remail, rpassword1));
   };
 
   return (
@@ -60,13 +79,15 @@ export const LoginScreen = () => {
           <div className="card">
             <div className="card-body">
               <h5> Register </h5>
-              <form>
+              <form onSubmit={handleRegister}>
                 <div className="mb-3">
                   <input
                     type="text"
                     className="form-control"
                     placeholder="Name"
-                    name="name"
+                    name="rname"
+                    value={rname}
+                    onChange={handleRegisterInputChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -74,7 +95,9 @@ export const LoginScreen = () => {
                     type="text"
                     className="form-control"
                     placeholder="Email"
-                    name="email"
+                    name="remail"
+                    value={remail}
+                    onChange={handleRegisterInputChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -82,7 +105,9 @@ export const LoginScreen = () => {
                     type="password"
                     className="form-control"
                     placeholder="Password"
-                    name="password"
+                    name="rpassword1"
+                    value={rpassword1}
+                    onChange={handleRegisterInputChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -90,7 +115,9 @@ export const LoginScreen = () => {
                     type="password"
                     className="form-control"
                     placeholder="Password repeat"
-                    name="password2"
+                    name="rpassword2"
+                    value={rpassword2}
+                    onChange={handleRegisterInputChange}
                   />
                 </div>
                 <div className="mb-3 d-grid gap-2">
