@@ -1,6 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { startLogin } from "../../actions/auth";
+import { useForm } from "../../hooks/useForm";
 
 export const LoginScreen = () => {
+  const [formLoginValues, handleLoginInputChange] = useForm({
+    lemail: "ema@gmail.com",
+    lpassword: "123456",
+  });
+
+  const { lemail, lpassword } = formLoginValues;
+
+  const dispatch = useDispatch();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(startLogin(lemail, lpassword));
+  };
+
   return (
     <div className="container mt-5">
       <div className="row">
@@ -8,13 +25,15 @@ export const LoginScreen = () => {
           <div className="card">
             <div className="card-body">
               <h5> Login </h5>
-              <form>
+              <form onSubmit={handleLogin}>
                 <div className="mb-3">
                   <input
                     type="text"
                     className="form-control"
                     placeholder="Email"
-                    name="email"
+                    name="lemail"
+                    value={lemail}
+                    onChange={handleLoginInputChange}
                   />
                 </div>
                 <div className="mb-3">
@@ -22,7 +41,9 @@ export const LoginScreen = () => {
                     type="password"
                     className="form-control"
                     placeholder="Password"
-                    name="password"
+                    name="lpassword"
+                    value={lpassword}
+                    onChange={handleLoginInputChange}
                   />
                 </div>
                 <div className="mb-3 d-grid gap-2">
