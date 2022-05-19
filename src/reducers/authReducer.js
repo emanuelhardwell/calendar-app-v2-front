@@ -1,3 +1,5 @@
+import { types } from "../types/types";
+
 const initialState = {
   checking: true,
   // uid: "1233234245252",
@@ -6,8 +8,12 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    // case value:
-    //   break;
+    case types.authLogin:
+      return {
+        ...state,
+        ...action.payload,
+        checking: false,
+      };
 
     default:
       return state;
