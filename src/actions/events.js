@@ -121,3 +121,9 @@ const eventLoaded = (events) => {
     payload: events,
   };
 };
+
+export const eventLogout = () => {
+  return {
+    type: types.eventLogout,
+  };
+};
