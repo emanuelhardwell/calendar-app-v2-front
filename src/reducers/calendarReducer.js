@@ -49,7 +49,7 @@ export const calendarReducer = (state = initialState, action) => {
       return {
         ...state,
         events: state.events.filter(
-          (event) => event.id !== state.activeEvent.id
+          (event) => event._id !== state.activeEvent._id
         ),
         activeEvent: null,
       };

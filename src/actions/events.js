@@ -19,7 +19,7 @@ export const eventStartAddNew = (event) => {
       const body = await res.json();
 
       if (body.ok) {
-        event.id = body.event._id;
+        event._id = body.event._id;
         event.user = {
           _id: uid,
           name: name,
@@ -72,7 +72,26 @@ const eventUpdated = (event) => {
   };
 };
 
-export const eventDeleted = () => {
+export const eventStartDeleted = () => {
+  return async (dispatch, getState) => {
+    const { _id } = getState().calendar.activeEvent;
+    try {
+      const res = await fetchWithToken(`events/${_id}`, {}, "DELETE");
+      const body = await res.json();
+
+      if (body.ok) {
+        dispatch(eventDeleted());
+        console.log(body);
+      } else {
+        Swal.fire("Error", body.msg, "error");
+      }
+    } catch (error) {
+      Swal.fire("Error", "Error no esperado", "error");
+    }
+  };
+};
+
+const eventDeleted = () => {
   return {
     type: types.eventDeleted,
   };
