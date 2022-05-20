@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import { convertDates } from "../helpers/convertDates";
 import { fetchWithToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
@@ -57,5 +58,30 @@ export const eventUpdated = (event) => {
 export const eventDeleted = () => {
   return {
     type: types.eventDeleted,
+  };
+};
+
+export const eventStartLoading = () => {
+  return async (dispatch) => {
+    try {
+      const res = await fetchWithToken("events");
+      const body = await res.json();
+
+      if (body.ok) {
+        const events = convertDates(body.events);
+        dispatch(eventLoaded(events));
+      } else {
+        Swal.fire("Error", body.msg, "error");
+      }
+    } catch (error) {
+      Swal.fire("Error", "Error no esperado", "error");
+    }
+  };
+};
+
+const eventLoaded = (events) => {
+  return {
+    type: types.eventLoaded,
+    payload: events,
   };
 };

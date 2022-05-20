@@ -83,6 +83,14 @@ export const CalendarModal = () => {
       );
     }
 
+    if (notes.trim().length < 5) {
+      return Swal.fire(
+        "Error",
+        "las notas debe tener mas de 5 letras",
+        "error"
+      );
+    }
+
     if (activeEvent) {
       dispatch(eventUpdated(formValues));
     } else {
