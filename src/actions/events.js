@@ -48,7 +48,24 @@ export const eventClearActive = () => {
   };
 };
 
-export const eventUpdated = (event) => {
+export const eventStartUpdated = (event) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetchWithToken(`events/${event._id}`, event, "PUT");
+      const body = await res.json();
+
+      if (body.ok) {
+        dispatch(eventUpdated(event));
+      } else {
+        Swal.fire("Error", body.msg, "error");
+      }
+    } catch (error) {
+      Swal.fire("Error", "Error no esperado", "error");
+    }
+  };
+};
+
+const eventUpdated = (event) => {
   return {
     type: types.eventUpdated,
     payload: event,

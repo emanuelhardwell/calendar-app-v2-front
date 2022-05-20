@@ -41,7 +41,7 @@ export const calendarReducer = (state = initialState, action) => {
       return {
         ...state,
         events: state.events.map((event) =>
-          event.id === action.payload.id ? action.payload : event
+          event._id === action.payload._id ? action.payload : event
         ),
       };
 
