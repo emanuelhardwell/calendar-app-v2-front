@@ -75,15 +75,31 @@ const eventUpdated = (event) => {
 export const eventStartDeleted = () => {
   return async (dispatch, getState) => {
     const { _id } = getState().calendar.activeEvent;
-    try {
-      const res = await fetchWithToken(`events/${_id}`, {}, "DELETE");
-      const body = await res.json();
 
-      if (body.ok) {
-        dispatch(eventDeleted());
-        console.log(body);
+    try {
+      const result = await Swal.fire({
+        title: "¿Está seguro de eliminar este evento?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "¡Sí, bórralo!",
+      });
+
+      if (result.isConfirmed) {
+        Swal.fire("¡Eliminado!", "Su evento ha sido eliminado.", "success");
+        const res = await fetchWithToken(`events/${_id}`, {}, "DELETE");
+        const body = await res.json();
+
+        if (body.ok) {
+          dispatch(eventDeleted());
+        } else {
+          Swal.fire("Error", body.msg, "error");
+          dispatch(eventClearActive());
+        }
       } else {
-        Swal.fire("Error", body.msg, "error");
+        dispatch(eventClearActive());
       }
     } catch (error) {
       Swal.fire("Error", "Error no esperado", "error");
