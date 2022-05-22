@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { startRegister } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
-import "./background.css"
 
 export const RegisterScreen = () => {
   const [formRegisterValues, handleRegisterInputChange] = useForm({

@@ -15,8 +15,9 @@ import {
   eventSetActive,
   eventStartLoading,
 } from "../../actions/events";
-import { AddNewFab } from "./AddNewFab";
+
 import { DeleteEventFab } from "../ui/DeleteEventFab";
+import { AddNewFab } from "../ui/AddNewFab";
 moment.locale("es");
 const localizer = momentLocalizer(moment);
 

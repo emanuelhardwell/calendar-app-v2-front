@@ -88,12 +88,12 @@ export const eventStartDeleted = () => {
       });
 
       if (result.isConfirmed) {
-        Swal.fire("¡Eliminado!", "Su evento ha sido eliminado.", "success");
         const res = await fetchWithToken(`events/${_id}`, {}, "DELETE");
         const body = await res.json();
 
         if (body.ok) {
           dispatch(eventDeleted());
+          Swal.fire("¡Eliminado!", "Su evento ha sido eliminado.", "success");
         } else {
           Swal.fire("Error", body.msg, "error");
           dispatch(eventClearActive());

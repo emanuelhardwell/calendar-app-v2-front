@@ -48,14 +48,18 @@ export const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <span className="nav-link active"> {name} </span>
+                <span className="nav-link active">
+                  {" "}
+                  <i className="fa-solid fa-user"></i> {name}{" "}
+                </span>
               </li>
-              <li className="nav-item">
+              <li className="nav-item ">
                 <button
                   className="nav-link btn btn-danger"
                   onClick={handleLogout}
                 >
-                  Logout
+                  Logout{" "}
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 </button>
               </li>
             </ul>
