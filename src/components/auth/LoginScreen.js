@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import Swal from "sweetalert2";
-import { startLogin, startRegister } from "../../actions/auth";
+import { Link } from "react-router-dom";
+
+import { startLogin } from "../../actions/auth";
 import { useForm } from "../../hooks/useForm";
 
 export const LoginScreen = () => {
@@ -12,15 +13,6 @@ export const LoginScreen = () => {
 
   const { lemail, lpassword } = formLoginValues;
 
-  const [formRegisterValues, handleRegisterInputChange] = useForm({
-    rname: "emanuel",
-    remail: "ema@gmail.com",
-    rpassword1: "123456",
-    rpassword2: "123456",
-  });
-
-  const { rname, remail, rpassword1, rpassword2 } = formRegisterValues;
-
   const dispatch = useDispatch();
 
   const handleLogin = (e) => {
@@ -28,24 +20,18 @@ export const LoginScreen = () => {
     dispatch(startLogin(lemail, lpassword));
   };
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-
-    if (rpassword1 !== rpassword2) {
-      return Swal.fire("Error", "Las contraseñas no coinciden", "error");
-    }
-    dispatch(startRegister(rname, remail, rpassword1));
-  };
-
   return (
     <div className="container mt-5">
       <div className="row">
-        <div className="col-md-6 p-5">
+        <div className="col-md-6 p-5 mx-auto">
           <div className="card">
             <div className="card-body">
-              <h5> Login </h5>
+              <h4 className="mb-4 text-center">Iniciar sesión</h4>
               <form onSubmit={handleLogin}>
-                <div className="mb-3">
+                <div className="mb-3 input-group">
+                  <span className="input-group-text" id="basic-addon1">
+                    <i className="fa-solid fa-user"></i>
+                  </span>
                   <input
                     type="text"
                     className="form-control"
@@ -55,7 +41,11 @@ export const LoginScreen = () => {
                     onChange={handleLoginInputChange}
                   />
                 </div>
-                <div className="mb-3">
+
+                <div className="mb-3 input-group">
+                  <span className="input-group-text" id="basic-addon1">
+                    <i className="fa-solid fa-lock"></i>
+                  </span>
                   <input
                     type="password"
                     className="form-control"
@@ -65,67 +55,26 @@ export const LoginScreen = () => {
                     onChange={handleLoginInputChange}
                   />
                 </div>
+
                 <div className="mb-3 d-grid gap-2">
                   <button type="submit" className="btn btn-primary">
-                    Login
+                    Login <span></span>
+                    <i className="fa-solid fa-right-to-bracket"></i>
                   </button>
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
 
-        <div className="col-md-6 p-5">
-          <div className="card">
-            <div className="card-body">
-              <h5> Register </h5>
-              <form onSubmit={handleRegister}>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Name"
-                    name="rname"
-                    value={rname}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Email"
-                    name="remail"
-                    value={remail}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password"
-                    name="rpassword1"
-                    value={rpassword1}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
-                <div className="mb-3">
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Password repeat"
-                    name="rpassword2"
-                    value={rpassword2}
-                    onChange={handleRegisterInputChange}
-                  />
-                </div>
-                <div className="mb-3 d-grid gap-2">
-                  <button type="submit" className="btn btn-success">
-                    Create account
-                  </button>
-                </div>
-              </form>
+              <div className="mb-3">
+                <Link to="#"> ¿Olvidaste tu contraseña? </Link>
+              </div>
+            </div>
+
+            <div className="card-footer">
+              <p className="pt-2 text-center">
+                ¿No tienes una cuenta?
+                <span> </span>
+                <Link to="/register">¡Regístrese y comience! </Link>
+              </p>
             </div>
           </div>
         </div>

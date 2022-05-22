@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { startCheckingFinish } from "../actions/auth";
 import { LoginScreen } from "../components/auth/LoginScreen";
+import { RegisterScreen } from "../components/auth/RegisterScreen";
 import { CalendarScreen } from "../components/calendar/CalendarScreen";
 import { PrivateRouter } from "./PrivateRouter";
 import { PublicRouter } from "./PublicRouter";
@@ -30,6 +31,14 @@ export const AppRouter = () => {
             isAuthenticated={!!uid}
             component={LoginScreen}
           />
+
+          <PublicRouter
+            exact
+            path="/register"
+            isAuthenticated={!!uid}
+            component={RegisterScreen}
+          />
+
           <PrivateRouter
             exact
             path="/"
