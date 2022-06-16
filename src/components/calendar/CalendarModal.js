@@ -136,7 +136,9 @@ export const CalendarModal = () => {
         // contentLabel="Example Modal"
       >
         <form onSubmit={handleSubmit} className="container" noValidate>
-          <h4> {activeEvent ? "Edit Event" : "Create Event"} </h4>
+          <h4 className="text-center">
+            {activeEvent ? "Editar evento" : "Crear evento"}
+          </h4>
           <div className="mb-3">
             <label>Fecha y hora inicio</label>
             <DateTimePicker

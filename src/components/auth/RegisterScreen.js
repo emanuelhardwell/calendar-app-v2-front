@@ -7,10 +7,10 @@ import { useForm } from "../../hooks/useForm";
 
 export const RegisterScreen = () => {
   const [formRegisterValues, handleRegisterInputChange] = useForm({
-    rname: "emanuel",
-    remail: "ema@gmail.com",
-    rpassword1: "123456",
-    rpassword2: "123456",
+    rname: "",
+    remail: "",
+    rpassword1: "",
+    rpassword2: "",
   });
 
   const { rname, remail, rpassword1, rpassword2 } = formRegisterValues;
@@ -42,7 +42,7 @@ export const RegisterScreen = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Name"
+                      placeholder="Nombre"
                       name="rname"
                       value={rname}
                       onChange={handleRegisterInputChange}
@@ -55,7 +55,7 @@ export const RegisterScreen = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Email"
+                      placeholder="Correo"
                       name="remail"
                       value={remail}
                       onChange={handleRegisterInputChange}
@@ -68,7 +68,7 @@ export const RegisterScreen = () => {
                     <input
                       type="password"
                       className="form-control"
-                      placeholder="Password"
+                      placeholder="Contraseña"
                       name="rpassword1"
                       value={rpassword1}
                       onChange={handleRegisterInputChange}
@@ -81,7 +81,7 @@ export const RegisterScreen = () => {
                     <input
                       type="password"
                       className="form-control"
-                      placeholder="Password repeat"
+                      placeholder="Repetir contraseña"
                       name="rpassword2"
                       value={rpassword2}
                       onChange={handleRegisterInputChange}

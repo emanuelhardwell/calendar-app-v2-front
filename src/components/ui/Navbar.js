@@ -34,14 +34,14 @@ export const Navbar = () => {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink className="nav-link active" aria-current="page" to="/">
-                  Home
+                  Inicio
                 </NavLink>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <NavLink className="nav-link" to="/">
                   Features
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
           {/* div 2 */}
@@ -58,7 +58,7 @@ export const Navbar = () => {
                   className="nav-link btn btn-danger"
                   onClick={handleLogout}
                 >
-                  Logout{" "}
+                  Salir &nbsp;
                   <i className="fa-solid fa-arrow-right-from-bracket"></i>
                 </button>
               </li>

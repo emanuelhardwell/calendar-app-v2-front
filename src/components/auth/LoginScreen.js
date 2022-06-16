@@ -7,8 +7,8 @@ import { useForm } from "../../hooks/useForm";
 
 export const LoginScreen = () => {
   const [formLoginValues, handleLoginInputChange] = useForm({
-    lemail: "ema@gmail.com",
-    lpassword: "123456",
+    lemail: "",
+    lpassword: "",
   });
 
   const { lemail, lpassword } = formLoginValues;
@@ -35,7 +35,7 @@ export const LoginScreen = () => {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Email"
+                    placeholder="Correo"
                     name="lemail"
                     value={lemail}
                     onChange={handleLoginInputChange}
@@ -49,7 +49,7 @@ export const LoginScreen = () => {
                   <input
                     type="password"
                     className="form-control"
-                    placeholder="Password"
+                    placeholder="Contraseña"
                     name="lpassword"
                     value={lpassword}
                     onChange={handleLoginInputChange}
@@ -58,7 +58,7 @@ export const LoginScreen = () => {
 
                 <div className="mb-3 d-grid gap-2">
                   <button type="submit" className="btn btn-primary">
-                    Login <span></span>
+                    Entrar &nbsp;
                     <i className="fa-solid fa-right-to-bracket"></i>
                   </button>
                 </div>

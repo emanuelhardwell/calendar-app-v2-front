@@ -11,8 +11,7 @@ export const DeleteEventFab = () => {
   return (
     <>
       <button className="btn btn-danger fab-danger" onClick={handleDeleteEvent}>
-        Delete
-        <span> </span>
+        Eliminar &nbsp;
         <i className="fa-solid fa-trash"> </i>
       </button>
     </>
